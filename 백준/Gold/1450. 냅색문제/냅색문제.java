@@ -1,64 +1,52 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-import java.util.TreeMap;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-    private int n;
-    private int c, answer = 0;
-    private int[] arr = new int[30];
-    private TreeMap<Integer, Integer> hm = new TreeMap<>();
 
-    private void search(int idx, int sum) {
-        if (sum > c) return;
-        if (idx == 30 || arr[idx] == 0) {
-            answer += hm.getOrDefault(hm.floorKey(c-sum), 0);
-            return;
-        }
-        search(idx+1, sum);
-        search(idx+1, sum+arr[idx]);
-    }
+    static int[] arr;
 
-    private void prefixSum() {
-        Integer tmp = hm.firstKey();
-        int sumTmp = 0;
-
-        while (true) {
-            sumTmp += hm.get(tmp);
-            hm.put(tmp, sumTmp);
-
-            tmp = hm.higherKey(tmp);
-            if (tmp == null) break;
-        }
-    }
-
-    private void initLeft(int idx, int sum) {
-        if (sum > c) return;
-        if (idx == 15 || arr[idx] == 0) {
-            hm.put(sum, hm.getOrDefault(sum, 0)+1);
-            return;
-        }
-        initLeft(idx+1, sum);
-        initLeft(idx+1, sum+arr[idx]);
-    }
-
-    private void solution() throws Exception {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        n = Integer.parseInt(st.nextToken());
-        c = Integer.parseInt(st.nextToken());
 
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int c = Integer.parseInt(st.nextToken());
+
+        arr = new int[n];
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) arr[i] = Integer.parseInt(st.nextToken());
+        
 
-        initLeft(0, 0);
-        prefixSum();
-        search(15, 0);
+        ArrayList<Long> list1 = new ArrayList<>();
+        ArrayList<Long> list2 = new ArrayList<>();
+        getSums(list1, 0, n / 2 - 1, 0);
+        getSums(list2, n / 2, n - 1, 0);
+        Collections.sort(list2);
 
+        int answer = 0;
+        for (int i = 0; i < list1.size(); i++) {
+            answer += binarySearch(list2, c - list1.get(i));
+        }
         System.out.println(answer);
     }
 
-    public static void main(String[] args) throws Exception {
-        new Main().solution();
+    private static void getSums(ArrayList<Long> part, int start, int end, long sum) {
+        if (start > end) {
+            part.add(sum);
+        } else {
+            getSums(part, start + 1, end, sum);
+            getSums(part, start + 1, end, sum + arr[start]);
+        }
+    }
+
+    private static int binarySearch(ArrayList<Long> list, long value) {
+        int start = 0;
+        int end = list.size() - 1;
+        while (start <= end) {
+            int half = (start + end) / 2;
+            if (list.get(half) <= value) start = half + 1;
+            else end = half - 1;
+        }
+        return start;
     }
 }
