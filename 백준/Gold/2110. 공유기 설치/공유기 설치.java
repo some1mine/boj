@@ -13,14 +13,10 @@ public class Main {
         long answer = -1;
         long start = 1, end = houses[houses.length - 1] - houses[0];
 
-        if (nc[1] == 2) {
-            System.out.println(end);
-            return;
-        }
-        while(start < end) {
+        while(start <= end) {
             long mid = (start + end) / 2;
             int cnt = 1; long cur = houses[0];
-            for (int i = 1; i < nc[0]; i++) {
+            for (int i = 0; i < nc[0]; i++) {
                 if (houses[i] - cur >= mid) {
                     cnt++; cur = houses[i];
                 }
@@ -29,7 +25,7 @@ public class Main {
                 answer = mid;
                 start = mid + 1;
             } else {
-                end = mid;
+                end = mid - 1;
             }
         }
         System.out.println(answer);
