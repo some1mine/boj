@@ -3,51 +3,33 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        StringTokenizer st = null;
-        int T = Integer.parseInt(br.readLine());
-
-        while(T-- > 0) {
-            TreeMap<Integer, Integer> treeMap = new TreeMap<>();
-            int n = Integer.parseInt(br.readLine());
-
-            while(n-- > 0) {
-                st = new StringTokenizer(br.readLine());
-                String str = st.nextToken();
+        int t = Integer.parseInt(reader.readLine());
+        
+        for (int i = 0; i < t; i++) {
+            TreeMap<Integer, Integer> map = new TreeMap<>();
+            int k = Integer.parseInt(reader.readLine());
+            for (int j = 0; j < k; j++) {
+                StringTokenizer st = new StringTokenizer(reader.readLine());
+                String cmd = st.nextToken();
                 int num = Integer.parseInt(st.nextToken());
+                if(cmd.equals("I")) {
+                    map.put(num, map.getOrDefault(num, 0) + 1);
+                } else {
+                    if (map.isEmpty()) continue;
+                    int key;
+                    if(num == 1) key = map.lastKey();
+                    else key = map.firstKey();
 
-                switch(str) {
-                    case "I" :
-                        treeMap.put(num, treeMap.getOrDefault(num, 0) + 1);
-                        break;
-                    case "D" :
-                        if(treeMap.isEmpty()) break;
-                        if(num == -1) {
-                            int minKey = treeMap.firstKey();
-                            if(treeMap.get(minKey) == 1) {
-                                treeMap.remove(minKey);
-                            }else {
-                                treeMap.put(minKey, treeMap.get(minKey) - 1);
-                            }
-                        }else {
-                            int maxKey = treeMap.lastKey();
-                            if(treeMap.get(maxKey) == 1) {
-                                treeMap.remove(maxKey);
-                            }else {
-                                treeMap.put(maxKey, treeMap.get(maxKey) - 1);
-                            }
-                        }
-                        break;
+                    if(map.get(key) == 1) map.remove(key);
+                    else map.put(key, map.get(key) - 1);
                 }
             }
-
-            if(treeMap.isEmpty()) {
-                sb.append("EMPTY\n");
-            }else {
-                sb.append(treeMap.lastKey() + " " + treeMap.firstKey() + "\n");
-            }
+            if(map.isEmpty()) sb.append("EMPTY\n");
+            else sb.append(map.lastKey()).append(" ").append(map.firstKey()).append("\n");
         }
-        System.out.println(sb.toString());
+        System.out.println(sb);
+        reader.close();
     }
 }
