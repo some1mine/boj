@@ -1,7 +1,7 @@
 import java.util.*;
 
 class Solution {
-    public static int[] solution(int[] fees, String[] records) {
+   public int[] solution(int[] fees, String[] records) {
         Map<String, String> map = new HashMap<>();
         Map<String, Integer> ans = new TreeMap<>(Comparator.comparingInt(Integer::parseInt));
 
@@ -31,7 +31,7 @@ class Solution {
         return getAnswer(ans, fees);
     }
 
-    private static int[] getAnswer(Map<String, Integer> ansMap, int[] fees) {
+    public int[] getAnswer(Map<String, Integer> ansMap, int[] fees) {
         List<Integer> ans = new ArrayList<>();
 
         for (String carNumber : ansMap.keySet()) {
@@ -46,11 +46,10 @@ class Solution {
         return ans.stream().mapToInt(Integer::intValue).toArray();
     }
 
-    private static int getMin(String outTime, String inTime) {
+    public int getMin(String outTime, String inTime) {
         int t1 = Integer.parseInt(outTime.split(":")[0]) * 60 + Integer.parseInt(outTime.split(":")[1]);
         int t2 = Integer.parseInt(inTime.split(":")[0]) * 60 + Integer.parseInt(inTime.split(":")[1]);
         
         return t1 - t2;
     }
-
 }
