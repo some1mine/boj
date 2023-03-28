@@ -11,20 +11,16 @@ public class Main {
             int vertiFlag = 0, horiFlag = 0;
             for(int j = 0 ; j < n ; j++) {
                 if(arr[i][j].equals(".")) horiFlag++;
-                else {
-                    if(horiFlag >= 2) {
-                        hori++; horiFlag = 0;
-                    } else {
-                        horiFlag = 0;
-                    }
+                else if(horiFlag >= 2) {
+                    hori++; horiFlag = 0;
+                } else {
+                    horiFlag = 0;
                 }
                 if(arr[j][i].equals(".")) vertiFlag++;
-                else {
-                    if(vertiFlag >= 2) {
-                        verti++; vertiFlag = 0;
-                    } else {
-                        vertiFlag = 0;
-                    }
+                else if(vertiFlag >= 2) {
+                    verti++; vertiFlag = 0;
+                } else {
+                    vertiFlag = 0;
                 }
             }
             if(horiFlag >= 2) hori++;
