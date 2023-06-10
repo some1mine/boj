@@ -15,11 +15,11 @@ public class Main {
       st = new StringTokenizer(reader.readLine(), " ");
       for (int j = 0 ; j < m ; j++) arr[i][j] = Integer.parseInt(st.nextToken());
     }
+    outLoop:
     while (true) {
       if(arr[r][c] == 0) {
         answer++; arr[r][c] = 2; continue;
       }
-      boolean exists = false;
       for (int i = 1; i <= 4; i++) {
         int dir = (d - i + 4) % 4;
         int dy = r + directions[dir][1], dx = c + directions[dir][0];
@@ -27,15 +27,13 @@ public class Main {
           continue;
         }
         if (arr[dy][dx] == 0) {
-          exists = true; d = dir; r = dy; c = dx; break;
+          d = dir; r = dy; c = dx; continue outLoop;
         }
       }
-      if(!exists) {
-        int dy = r - directions[d][1], dx = c - directions[d][0];
-        if(dy < 0 || dx < 0 || dy >= n || dx >= m || arr[dy][dx] == 1) break;
-        else {
-          r = dy; c = dx;
-        }
+      int dy = r - directions[d][1], dx = c - directions[d][0];
+      if(dy < 0 || dx < 0 || dy >= n || dx >= m || arr[dy][dx] == 1) break;
+      else {
+        r = dy; c = dx;
       }
     }
     System.out.print(answer);
