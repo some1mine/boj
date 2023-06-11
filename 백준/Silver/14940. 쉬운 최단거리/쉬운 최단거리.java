@@ -8,10 +8,6 @@ public class Main {
     private static final int[] DC = {0, 1, -1, 0};
 
     public static void main(String[] args) throws Exception {
-        new Main().solution();
-    }
-
-    public void solution() throws Exception {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int r = Integer.parseInt(st.nextToken());
         int c = Integer.parseInt(st.nextToken());
