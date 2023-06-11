@@ -12,8 +12,9 @@ class Solution {
         for(Integer key : map.keySet()) {
             if(key == number) return map.get(key);
         }
-        
-        for(int i = 0 ; i < 8 ; i++) {
+
+        int ord = 0;
+        while(ord++ <= 8) {
             Map<Integer, Integer> tmp = new HashMap<>();
             for(Integer key1 : map.keySet()) {
                 for(Integer key2 : map.keySet()) {
