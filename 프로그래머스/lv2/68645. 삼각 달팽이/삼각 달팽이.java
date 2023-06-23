@@ -1,25 +1,22 @@
 class Solution {
-    public int[] dx = {0, 1, -1};
-    public int[] dy = {1, 0, -1};
+    public int[] dirX = {0, 1, -1};
+    public int[] dirY = {1, 0, -1};
     public int[] solution(int n) {
-        int[][] arr = new int[n][n];
-        int v = 1, x = 0, y = 0, d = 0;
+        int[] answer = new int[n * (n + 1) / 2];
+        int[][] triangle = new int[n][n];
+        int v = 1, x = 0, y = 0, d = 0, idx = 0;
         while(true) {
-            arr[y][x] = v++;
-            int nx = x + dx[d], ny = y + dy[d];
-            if(nx == n || ny == n || nx == -1 || ny == -1 || arr[ny][nx] != 0) {
+            triangle[y][x] = v++;
+            int dx = x + dirX[d], dy = y + dirY[d];
+            if(dy == n || dx == n || dy == -1 || dx == -1 || triangle[dy][dx] != 0) {
                 d = (d + 1) % 3;
-                nx = x + dx[d]; ny = y + dy[d];
-                if(nx == n || ny == n || nx == -1 || ny == -1 || arr[ny][nx] != 0) break;
+                dx = x + dirX[d]; dy = y + dirY[d];
+                if(dy == n | dx == n || dy == -1 || dx == -1 || triangle[dy][dx] != 0) break;
             }
-            x = nx; y = ny;
+            x = dx; y = dy;
         }
-        int[] answer = new int[v - 1];
-        int idx = 0;
         for(int i = 0 ; i < n ; i++) {
-            for(int j = 0 ; j <= i ; j++) {
-                answer[idx++] = arr[i][j];
-            }
+            for(int j = 0 ; j <= i ; j++) answer[idx++] = triangle[i][j];
         }
         return answer;
     }
