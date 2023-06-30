@@ -10,12 +10,12 @@ class Solution {
         // 4단계
         answer = trimer(answer);
         // 5단계
-        answer = answer.isEmpty() ? "a" : answer;
+        if(answer.isEmpty()) answer = "a";
         // 6단계
-        answer = answer.length() > 15 ? answer.substring(0, 15) : answer;
+        if(answer.length() > 15) answer = answer.substring(0, 15);
         answer = endTrimer(answer);
         // 7단계
-        answer = answer.length() < 3 ? repeat(answer) : answer;
+        if(answer.length() < 3) answer = repeat(answer);
         return answer;
     }
     public String repeat(String str) {
