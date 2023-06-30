@@ -1,13 +1,9 @@
 class Solution {
     public boolean solution(String s) {
-        boolean answer = false;
-        if(s.length() == 4 || s.length() == 6){
-            try{
-                Integer.parseInt(s);
-                return true;
-            }catch(Exception e){
-                return false;
-            }
+        boolean answer = true;
+        if(s.length() != 4 && s.length() != 6) return false;
+        for(char c : s.toCharArray()) {
+            if(c < '0' || c > '9') return false;
         }
         return answer;
     }
