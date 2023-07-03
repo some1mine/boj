@@ -17,6 +17,7 @@ public class Main {
             find(x + length / 2, y, length / 2);
             find(x, y + length / 2, length / 2);
             find(x + length / 2, y + length / 2, length / 2);
-        } else idx += (int) Math.pow(length, 2);
+        }
+        idx += (int) Math.pow(length, 2);
     }
 }
