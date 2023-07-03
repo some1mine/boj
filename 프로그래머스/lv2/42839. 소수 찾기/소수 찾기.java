@@ -10,19 +10,19 @@ class Solution {
     }
     public void getPrimes(int num, int[] numbers, boolean[] used, Set<Integer> primes) {
         if(isPrime(num)) primes.add(num);
-        
         for(int i = 0 ; i < numbers.length ; i++) {
             if(used[i]) continue;
-            int nextNum = num * 10 + numbers[i];
+            int next = num * 10 + numbers[i];
+            
             used[i] = true;
-            getPrimes(nextNum, numbers, used, primes);
+            getPrimes(next, numbers, used, primes);
             used[i] = false;
         }
     }
     public int solution(String numbers) {
-        Set<Integer> primes = new HashSet<>();
-        int[] nums = numbers.chars().map(c -> c - '0').toArray();
-        getPrimes(0, nums, new boolean[nums.length], primes);
-        return primes.size();
+        Set<Integer> set = new HashSet<>();
+        int[] nums = numbers.chars().map(i -> i - '0').toArray();
+        getPrimes(0, nums, new boolean[nums.length], set);
+        return set.size();
     }
 }
