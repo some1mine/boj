@@ -46,7 +46,7 @@ class Load implements Comparable<Load> {
 
     @Override
     public int compareTo(Load o) {
-        if (this.cost == o.cost) return (int) (this.idx - o.idx);
+        if (this.cost == o.cost) return this.idx - o.idx;
         return (int) (this.cost - o.cost);
     }
 }
