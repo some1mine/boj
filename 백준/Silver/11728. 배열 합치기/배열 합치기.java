@@ -6,8 +6,8 @@ public class Main {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
         reader.readLine();
-        PriorityQueue<Integer> queue1 = new PriorityQueue<>();
-        PriorityQueue<Integer> queue2 = new PriorityQueue<>();
+        Deque<Integer> queue1 = new LinkedList<>();
+        Deque<Integer> queue2 = new LinkedList<>();
         Arrays.stream(reader.readLine().split(" ")).mapToInt(Integer::parseInt).forEach(queue1::add);
         Arrays.stream(reader.readLine().split(" ")).mapToInt(Integer::parseInt).forEach(queue2::add);
         while(!queue1.isEmpty() && !queue2.isEmpty()) {
