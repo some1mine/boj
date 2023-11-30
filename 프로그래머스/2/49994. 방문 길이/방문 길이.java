@@ -9,7 +9,8 @@ class Solution {
                     c == 'U' && y !=  5 ? move = Map.of(Set.of(y, ++y), Set.of(x)) :
                     c == 'D' && y != -5 ? move = Map.of(Set.of(y, --y), Set.of(x)) :
                     c == 'R' && x !=  5 ? move = Map.of(Set.of(y), Set.of(x, ++x)) :
-                    c == 'L' && x != -5 ? move = Map.of(Set.of(y), Set.of(x, --x)) : null;
+                    c == 'L' && x != -5 ? move = Map.of(Set.of(y), Set.of(x, --x)) :
+                    null;
             if(move == null || set.contains(move)) continue;
             set.add(move); answer++;
         }
