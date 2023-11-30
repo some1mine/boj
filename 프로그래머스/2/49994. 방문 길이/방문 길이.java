@@ -49,8 +49,6 @@ class Direction {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
         Direction obj = (Direction) o;
         return this.ySet.equals(obj.ySet) && this.xSet.equals(obj.xSet);
     }
