@@ -52,7 +52,7 @@ class Direction {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Direction obj = (Direction) o;
-        return this.ySet.containsAll(obj.ySet) && this.xSet.containsAll(obj.xSet);
+        return this.ySet.equals(obj.ySet) && this.xSet.equals(obj.xSet);
     }
 
     @Override
