@@ -1,36 +1,15 @@
 import java.util.*;
 
 class Solution {
-    Set<Direction> set = new HashSet<>(); Direction move;
     public int solution(String dirs) {
-        int answer = 0;
-        int[] cur = new int[2];
+        Set<Direction> set = new HashSet<>(); Direction move = null; int answer = 0, y = 0, x = 0;
         for(char c : dirs.toCharArray()) {
-            switch(c) {
-                case 'U':
-                    if(cur[0] == 5) break;
-                    move = new Direction(cur[0], ++cur[0], cur[1], cur[1]);
-                    if(!set.contains(move)) answer++;
-                    set.add(move);
-                    break;
-                case 'D':
-                    if(cur[0] == -5) break;
-                    move = new Direction(cur[0], --cur[0], cur[1], cur[1]);
-                    if(!set.contains(move)) answer++;
-                    set.add(move);
-                    break;
-                case 'R':
-                    if(cur[1] == 5) break;
-                    move = new Direction(cur[0], cur[0], cur[1], ++cur[1]);
-                    if(!set.contains(move)) answer++;
-                    set.add(move);
-                    break;
-                case 'L':
-                    if(cur[1] == -5) break;
-                    move = new Direction(cur[0], cur[0], cur[1], --cur[1]);
-                    if(!set.contains(move)) answer++;
-                    set.add(move);
-                    break;
+            if(c == 'U' && y != 5) move = new Direction(y, ++y, x, x);
+            if(c == 'R' && x != 5) move = new Direction(y, y, x, ++x); 
+            if(c == 'D' && y != -5) move = new Direction(y, --y, x, x);
+            if(c == 'L' && x != -5) move = new Direction(y, y, x, --x);  
+            if(!set.contains(move)) {
+                set.add(move); answer++;
             }
         }
         return answer;
@@ -38,21 +17,15 @@ class Solution {
 }
 
 class Direction {
-    public int fromY, fromX, toY, toX;
     Set<Integer> ySet = new HashSet<>(), xSet = new HashSet<>();
     public Direction(int fromY, int toY, int fromX, int toX) {
-        this.fromY = fromY; ySet.add(fromY);
-        this.toY = toY; ySet.add(toY);
-        this.fromX = fromX; xSet.add(fromX);
-        this.toX = toX; xSet.add(toX);
+        ySet.add(fromY); ySet.add(toY); xSet.add(fromX); xSet.add(toX);
     }
-
     @Override
     public boolean equals(Object o) {
         Direction obj = (Direction) o;
-        return this.ySet.equals(obj.ySet) && this.xSet.equals(obj.xSet);
+        return this.ySet.containsAll(obj.ySet) && this.xSet.containsAll(obj.xSet);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(this.ySet, this.xSet);
