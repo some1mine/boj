@@ -7,8 +7,8 @@ class Solution {
         for(char c : dirs.toCharArray()) {
             Map move =
                     c == 'U' && y !=  5 ? move = Map.of(Set.of(y, ++y), Set.of(x)) :
-                    c == 'D' && y != -5 ? move = Map.of(Set.of(y, --y), Set.of(x)) :
                     c == 'R' && x !=  5 ? move = Map.of(Set.of(y), Set.of(x, ++x)) :
+                    c == 'D' && y != -5 ? move = Map.of(Set.of(y, --y), Set.of(x)) :
                     c == 'L' && x != -5 ? move = Map.of(Set.of(y), Set.of(x, --x)) :
                     null;
             if(move == null || set.contains(move)) continue;
