@@ -12,7 +12,7 @@ class Solution {
                     (c == 'R' && x <  5) ? Map.of(Set.of(x, ++x), Set.of(y)) : // 우
                     null;
             if(move == null || set.contains(move)) continue;
-            set.add(move); answer++;
+            answer++; set.add(move);
         }
         return answer;
     }
