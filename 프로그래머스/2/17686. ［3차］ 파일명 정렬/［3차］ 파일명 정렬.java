@@ -3,21 +3,18 @@ import java.util.*;
 class Solution {
     public String[] solution(String[] files) {
         List<File> fileList = new ArrayList<>();
-        for(String file : files) {
-            String[] fileArr = analyze(file);
-            //System.out.println(Arrays.toString(fileArr));
-            fileList.add(new File(fileArr[0], fileArr[1], fileArr[2]));
-        }
+        for(String file : files) fileList.add(new File(analyze(file)));
         return fileList.stream().sorted().map(f -> f.toString()).toArray(String[]::new);
     }
     public String[] analyze(String file) {
         int startIdx = -1;
         String[] result = new String[3];
         for(int i = 0 ; i < file.length() ; i++) {
-            if(startIdx == -1 && Character.isDigit(file.charAt(i))) {
-                startIdx = i; result[0] = file.substring(0, i);
-            }
-            if(startIdx >= 0 && !Character.isDigit(file.charAt(i))) {
+            if(Character.isDigit(file.charAt(i))) {
+                if(startIdx == -1) {
+                    startIdx = i; result[0] = file.substring(0, i);
+                }
+            } else if (startIdx >= 0) {
                 result[1] = file.substring(startIdx, i); result[2] = file.substring(i); break;
             }
         }
@@ -30,11 +27,11 @@ class File implements Comparable<File> {
     String head, tail, originNum; 
     int number;
     
-    public File(String head, String originNum, String tail) {
-        this.head = head;
-        this.originNum = originNum;
-        this.tail = tail;
-        this.number = Integer.parseInt(originNum);
+    public File(String[] analyze) {
+        this.head = analyze[0];
+        this.originNum = analyze[1];
+        this.tail = analyze[2];
+        this.number = Integer.parseInt(analyze[1]);
     }
     @Override
     public int compareTo(File o) {
