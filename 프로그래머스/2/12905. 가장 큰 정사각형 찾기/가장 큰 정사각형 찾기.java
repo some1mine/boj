@@ -9,7 +9,9 @@ class Solution {
         }
         return (int) Math.pow(Arrays.stream(board).flatMapToInt(Arrays::stream).max().getAsInt(), 2);
     }
-    public int getMin(int[][] board, int i, int j) {
-        return Math.min(Math.min(board[i][j - 1], board[i - 1][j]), board[i - 1][j - 1]);
+    public int getMin(int[][] board, int y, int x) {
+        int a = board[y][x - 1], b = board[y - 1][x], c = board[y - 1][x - 1];
+        
+        return (a <= b && a <= c) ? a : (b <= c && b <= a) ? b : c; 
     }
 }
