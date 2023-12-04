@@ -11,7 +11,6 @@ class Solution {
 
             answer += deleteSet.size();
             for(Point p : deleteSet) clearBrokenBlocks(n, board, p);
-
             board = dropAll(board, m, n);
         } while(!deleteSet.isEmpty());
         
@@ -45,13 +44,13 @@ class Solution {
         for(int x = 0 ; x < n ; x++) {
             for(int y = m - 2 ; y >= 0 ; y--) {
                 if(arr[y][x] == ' ') continue;
-                dropBlock(m, arr, x, y);
+                dropOne(m, arr, x, y);
             }
         }
         return Arrays.stream(arr).map(String::new).toArray(String[]::new);
     }
     
-    public void dropBlock(int m, char[][] arr, int x, int blockIdx) {
+    public void dropOne(int m, char[][] arr, int x, int blockIdx) {
         for(int i = m - 1; i > blockIdx; i--) {
             if(arr[i][x] == ' ') {
                 arr[i][x] = arr[blockIdx][x]; arr[blockIdx][x] = ' '; return;
