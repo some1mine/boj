@@ -5,18 +5,19 @@ class Solution {
     Set<Point> deleteSet = new HashSet<>();
     public int solution(int m, int n, String[] board) {
         int answer = 0;
-        while(true) {
-            fillDeleteSet(m, n, board, deleteSet);
-            if(deleteSet.size() == 0) break;
+        do {
+            deleteSet.clear();
+            fillDeleteSet(m, n, board);
 
             answer += deleteSet.size();
             for(Point p : deleteSet) clearBrokenBlocks(n, board, p);
 
-            board = drop(board, m, n); deleteSet.clear();
-        }
+            board = drop(board, m, n);
+        } while(!deleteSet.isEmpty());
+        
         return answer;
     }
-    public void fillDeleteSet(int m, int n, String[] board, Set<Point> deleteSet) {
+    public void fillDeleteSet(int m, int n, String[] board) {
         for(int i = 0; i < m - 1 ; i++) {
             for(int j = 0; j < n - 1 ; j++) {
                 if(possible(board, i, j)) {
@@ -39,8 +40,7 @@ class Solution {
         char[][] arr = Arrays.stream(board).map(String::toCharArray).toArray(char[][]::new);
         for(int x = 0 ; x < n ; x++) {
             for(int y = m - 2 ; y >= 0 ; y--) {
-                if(arr[y][x] == ' ') continue;
-                dropIfNeeded(m, arr, x, y);
+                if(arr[y][x] != ' ') dropIfNeeded(m, arr, x, y);
             }
         }
         return Arrays.stream(arr).map(String::new).toArray(String[]::new);
