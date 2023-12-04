@@ -44,7 +44,8 @@ class Solution {
         char[][] arr = Arrays.stream(board).map(String::toCharArray).toArray(char[][]::new);
         for(int x = 0 ; x < n ; x++) {
             for(int y = m - 2 ; y >= 0 ; y--) {
-                if(arr[y][x] != ' ') dropIfNeeded(m, arr, x, y);
+                if(arr[y][x] == ' ') continue;
+                dropIfNeeded(m, arr, x, y);
             }
         }
         return Arrays.stream(arr).map(String::new).toArray(String[]::new);
