@@ -19,8 +19,8 @@ class Solution {
     }
     
     public void fillDeleteSet(int m, int n, String[] board) {
-        for(int i = 0; i < m - 1 ; i++) {
-            for(int j = 0; j < n - 1 ; j++) {
+        for(int i = 0 ; i < m - 1 ; i++) {
+            for(int j = 0 ; j < n - 1 ; j++) {
                 if(possible(board, i, j)) {
                     deleteSet.add(new Point(j    , i + 1)); deleteSet.add(new Point(j    , i    ));
                     deleteSet.add(new Point(j + 1, i    )); deleteSet.add(new Point(j + 1, i + 1));
