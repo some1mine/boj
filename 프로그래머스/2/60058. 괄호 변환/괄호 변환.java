@@ -3,7 +3,6 @@ class Solution {
         return get(p, 0);
     }
     public String get(String p, int flag) {
-        if(p.length() == 0) return p;
         for(int i = 0 ; i < p.length() ; i++) {
             flag = p.charAt(i) == '(' ? flag + 1 : flag - 1;
             if(flag == 0) {
