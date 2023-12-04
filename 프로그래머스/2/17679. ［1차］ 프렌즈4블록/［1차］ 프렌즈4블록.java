@@ -12,7 +12,7 @@ class Solution {
             answer += deleteSet.size();
             for(Point p : deleteSet) clearBrokenBlocks(n, board, p);
 
-            board = drop(board, m, n);
+            board = dropAll(board, m, n);
         } while(!deleteSet.isEmpty());
         
         return answer;
@@ -40,18 +40,18 @@ class Solution {
         board[p.y] = board[p.y].substring(0, p.x) + " " + board[p.y].substring(Math.min(p.x + 1, n));
     }
     
-    public String[] drop(String[] board, int m, int n) {
+    public String[] dropAll(String[] board, int m, int n) {
         char[][] arr = Arrays.stream(board).map(String::toCharArray).toArray(char[][]::new);
         for(int x = 0 ; x < n ; x++) {
             for(int y = m - 2 ; y >= 0 ; y--) {
                 if(arr[y][x] == ' ') continue;
-                dropIfNeeded(m, arr, x, y);
+                dropBlock(m, arr, x, y);
             }
         }
         return Arrays.stream(arr).map(String::new).toArray(String[]::new);
     }
     
-    public void dropIfNeeded(int m, char[][] arr, int x, int blockIdx) {
+    public void dropBlock(int m, char[][] arr, int x, int blockIdx) {
         for(int i = m - 1; i > blockIdx; i--) {
             if(arr[i][x] == ' ') {
                 arr[i][x] = arr[blockIdx][x]; arr[blockIdx][x] = ' '; return;
