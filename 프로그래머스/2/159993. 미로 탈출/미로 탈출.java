@@ -3,7 +3,6 @@ import java.util.*;
 class Solution {
     public int[][] directions = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
     public int solution(String[] maps) {
-        
         char[][] map = Arrays.stream(maps).map(m -> m.toCharArray()).toArray(char[][]::new);
         int[] startPoint = getPoint(map, 'S'), leverPoint = getPoint(map, 'L');
         
