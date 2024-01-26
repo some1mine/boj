@@ -3,20 +3,14 @@ import java.util.*;
 class Solution {
     public int[][] directions = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
     public int solution(String[] maps) {
-        int answer = 0;
         
         char[][] map = Arrays.stream(maps).map(m -> m.toCharArray()).toArray(char[][]::new);
         int[] startPoint = getPoint(map, 'S'), leverPoint = getPoint(map, 'L');
         
-        int count = bfs(map, startPoint, 'L');
-        if(count == -1) return -1;
-        answer += count;
+        int count1 = bfs(map, startPoint, 'L'), count2 = bfs(map, leverPoint, 'E');
+        if(count1 == -1 || count2 == -1) return -1;
         
-        count = bfs(map, leverPoint, 'E');
-        if(count == -1) return -1;
-        answer += count;
-        
-        return answer;
+        return count1 + count2;
     }
     public int bfs(char[][] map, int[] startPoint, char endMark) {
         boolean[][] visited = new boolean[map.length][map[0].length];
