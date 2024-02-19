@@ -4,7 +4,7 @@ class Solution {
         for(String str : s.split("")) {
             if(isEven) answer += str.toUpperCase();
             else answer += str.toLowerCase();
-            isEven = str.equals(" ") ? isEven = true : !isEven;
+            isEven = str.equals(" ") ? true : !isEven;
         }
         return answer;
     }
