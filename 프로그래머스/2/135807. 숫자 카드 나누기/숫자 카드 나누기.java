@@ -3,9 +3,8 @@ import java.util.*;
 class Solution {
     public int solution(int[] arrayA, int[] arrayB) {
         int answer = 0; List<Integer> gcdA = getGcd(arrayA, arrayB), gcdB = getGcd(arrayB, arrayA);
-        int maxA = gcdA.stream().filter(a -> !gcdB.contains(a)).mapToInt(i -> i).max().orElse(0),
-            maxB = gcdB.stream().filter(b -> !gcdA.contains(b)).mapToInt(i -> i).max().orElse(0);
-        return Math.max(maxA, maxB);
+        return Math.max(gcdA.stream().filter(a -> !gcdB.contains(a)).mapToInt(i -> i).max().orElse(0),
+            gcdB.stream().filter(b -> !gcdA.contains(b)).mapToInt(i -> i).max().orElse(0));
     }
     public List<Integer> getGcd(int[] arr1, int[] arr2) {
         List<Integer> list = new ArrayList<>();
