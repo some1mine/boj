@@ -3,7 +3,7 @@ import java.util.stream.*;
 
 class Solution {
     public int solution(int[] arrayA, int[] arrayB) {
-        int answer = 0; List<Integer> gcdA = getGcd(arrayA, arrayB), gcdB = getGcd(arrayB, arrayA);
+        List<Integer> gcdA = getGcd(arrayA, arrayB), gcdB = getGcd(arrayB, arrayA);
         return Math.max(gcdA.stream().filter(a -> !gcdB.contains(a)).mapToInt(i -> i).max().orElse(0),
             gcdB.stream().filter(b -> !gcdA.contains(b)).mapToInt(i -> i).max().orElse(0));
     }
