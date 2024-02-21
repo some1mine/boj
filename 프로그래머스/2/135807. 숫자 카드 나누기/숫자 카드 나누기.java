@@ -3,11 +3,11 @@ import java.util.stream.*;
 
 class Solution {
     public int solution(int[] arrayA, int[] arrayB) {
-        List<Integer> gcdA = getGcd(arrayA, arrayB), gcdB = getGcd(arrayB, arrayA);
-        return Math.max(gcdA.stream().filter(a -> !gcdB.contains(a)).mapToInt(i -> i).max().orElse(0),
-            gcdB.stream().filter(b -> !gcdA.contains(b)).mapToInt(i -> i).max().orElse(0));
+        List<Integer> divA = getDiv(arrayA, arrayB), divB = getDiv(arrayB, arrayA);
+        return Math.max(divA.stream().filter(a -> !divB.contains(a)).mapToInt(i -> i).max().orElse(0),
+            divB.stream().filter(b -> !divA.contains(b)).mapToInt(i -> i).max().orElse(0));
     }
-    public List<Integer> getGcd(int[] arr1, int[] arr2) {
+    public List<Integer> getDiv(int[] arr1, int[] arr2) {
         int min = Arrays.stream(arr1).min().getAsInt();
         List<Integer> dividors = get(min);
         return dividors.stream().filter(d -> 
