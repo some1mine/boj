@@ -1,7 +1,8 @@
+import java.util.stream.*;
+
 class Solution {
     public int[] solution(int n, int m) {
-        int gcd = 1, min = Math.max(n, m);
-        for(int i = 2 ; i <= min ; i++) gcd = n % i == 0 && m % i == 0 ? i : gcd;
+       int gcd = IntStream.rangeClosed(1, Math.min(n, m)).filter(i -> n % i == 0 && m % i == 0).max().getAsInt();
         return new int[]{gcd, n * m / gcd};
     }
 }
