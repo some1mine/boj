@@ -20,9 +20,7 @@ class Solution {
                 if(arr[0][i] == 'X') lineX++; if(arr[0][i] == 'O') lineY++;
             }
         }
-        if(lineX == lineY && lineY > 0) return 0;
-        if(lineY > 0 && diff == 0) return 0;
-        if(lineX > 0 && diff == 1) return 0;
+        if((lineX == lineY && lineY > 0) || (lineY > 0 && diff == 0) || (lineX > 0 && diff == 1)) return 0;
         return 1;
     }
     public boolean formate(char a, char b, char c) {
