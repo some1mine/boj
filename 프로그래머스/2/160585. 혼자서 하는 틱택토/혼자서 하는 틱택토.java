@@ -5,7 +5,7 @@ class Solution {
         char[][] arr = Arrays.stream(board).map(s -> s.toCharArray()).toArray(char[][]::new);
         long cntY = Arrays.stream(board).map(b -> b.chars().filter(c -> c == 'O').count()).mapToLong(l -> l).sum(),
              cntX = Arrays.stream(board).map(b -> b.chars().filter(c -> c == 'X').count()).mapToLong(l -> l).sum(), 
-             lineX = 0, lineY = 0, diff = cntY - cntX;
+             diff = cntY - cntX, lineX = 0, lineY = 0;
         if(diff < 0 || diff > 1) return 0;
         
         if(formate(arr[1][1], arr[0][0], arr[2][2]) || formate(arr[2][0], arr[0][2], arr[1][1])) {
