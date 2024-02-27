@@ -1,13 +1,11 @@
+import java.util.*;
+
 class Solution {
     public int solution(int n, int k) {
         return getPrimes(Integer.toString(n, k));
     }
     public int getPrimes(String num) {
-        int answer = 0;
-        for(String s : num.split("0")) {
-            if(!s.equals("") && isPrime(Long.parseLong(s))) answer++;
-        }
-        return answer;
+        return (int) Arrays.stream(num.split("0")).filter(s -> !s.equals("") && isPrime(Long.parseLong(s))).count();
     }
     public boolean isPrime(long num) {
         if(num == 1) return false;
