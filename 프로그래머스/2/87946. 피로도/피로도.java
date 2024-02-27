@@ -7,15 +7,15 @@ class Solution {
         permutation(k, dungeons, 0);
         return answer;
     }
-    public void permutation(int k, int[][] dungeons, int cnt) {
-        if(cnt == dungeons.length) {
+    public void permutation(int k, int[][] dungeons, int depth) {
+        if(depth == dungeons.length) {
             answer = Math.max(getCount(arr, k), answer); return;
         }
         for(int i = 0 ; i < dungeons.length ; i++) {
             if(!visited[i]) {
                 visited[i] = true;
-                arr[cnt] = dungeons[i];
-                permutation(k, dungeons, cnt + 1);
+                arr[depth] = dungeons[i];
+                permutation(k, dungeons, depth + 1);
                 visited[i] = false;
             }
         }
