@@ -21,11 +21,11 @@ class Solution {
         }
     }
     public int getCount(int[][] arr, int k) {
-        int answer = 0;
+        int count = 0;
         for(int[] ar : arr) {
             if(ar[0] > k) break;
-            k -= ar[1]; answer++;
+            k -= ar[1]; count++;
         }
-        return answer;
+        return count;
     }
 }
