@@ -9,12 +9,7 @@ class Solution {
     }
     public void permutation(int k, int[][] dungeons, int cnt) {
         if(cnt == dungeons.length) {
-            int count = 0;
-            for(int[] ar : arr) {
-                if(ar[0] > k) break;
-                k -= ar[1]; count++;
-            }
-            answer = Math.max(count, answer);
+            answer = Math.max(getCount(arr, k), answer); return;
         }
         for(int i = 0 ; i < dungeons.length ; i++) {
             if(!visited[i]) {
@@ -24,5 +19,13 @@ class Solution {
                 visited[i] = false;
             }
         }
+    }
+    public int getCount(int[][] arr, int k) {
+        int answer = 0;
+        for(int[] ar : arr) {
+            if(ar[0] > k) break;
+            k -= ar[1]; answer++;
+        }
+        return answer;
     }
 }
