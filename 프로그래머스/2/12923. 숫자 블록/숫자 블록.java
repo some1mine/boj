@@ -2,7 +2,6 @@ class Solution {
     public int[] solution(long s, long e) {
         int begin = (int) s, end = (int) e; 
         int[] answer = new int[end - begin + 1];
-        if (begin == 1) answer[0] = 0;
         for (int i = 0 ; i < answer.length ; i++) answer[i] = getGcd(begin + i);
         return answer;
     }
