@@ -1,7 +1,6 @@
 class Solution {
-    public int[] solution(long s, long e) {
-        int begin = (int) s, end = (int) e; 
-        int[] answer = new int[end - begin + 1];
+    public int[] solution(long begin, long end) {
+        int[] answer = new int[(int) (end - begin + 1)];
         for (int i = 0 ; i < answer.length ; i++) answer[i] = getGcd(begin + i);
         return answer;
     }
