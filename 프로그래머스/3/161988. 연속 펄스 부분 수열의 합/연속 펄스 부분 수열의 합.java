@@ -1,13 +1,12 @@
 import java.util.*;
-import java.util.stream.*;
 
 class Solution {
     public long solution(int[] sequence) {
         int[] arr = Arrays.copyOf(sequence, sequence.length);
-        IntStream.range(0, arr.length).forEach(i -> {
+        for(int i = 0 ; i < arr.length ; i++) {
             if(i % 2 == 0) arr[i] *= -1; 
             else sequence[i] *= -1;
-        });
+        }
         return Math.max(getMax(sequence), getMax(arr));
     }
     public long getMax(int[] arr) {
