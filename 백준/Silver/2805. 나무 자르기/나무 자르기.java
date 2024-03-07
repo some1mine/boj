@@ -1,45 +1,34 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int[] nm = Arrays.stream(reader.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+        int[] arr = Arrays.stream(reader.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+        Arrays.sort(arr);
+        int answer = getHeight(arr, nm[1]);
+        System.out.println(answer);
+        reader.close();
+    }
 
-        String[] input = br.readLine().split(" ");
-        int len = Integer.parseInt(input[0]);
-        int target = Integer.parseInt(input[1]);
-
-        input = br.readLine().split(" ");
-
-        int[] having = new int[len];
-        int cnt = 0;
-        int maxNum = 0;
-        int minNum = Integer.MAX_VALUE;
-        for(String s : input) {
-            having[cnt++] = Integer.parseInt(s);
-            maxNum = Math.max(having[cnt - 1], maxNum);
-            minNum = Math.min(having[cnt - 1], minNum);
+    private static int getHeight(int[] arr, int m) {
+        int start = 1, end = arr[arr.length - 1];
+        while(start <= end) {
+            int mid = (start + end) / 2;
+            if(getSum(arr, mid) == m) return mid;
+            else if(getSum(arr, mid) < m) end = mid - 1;
+            else if(getSum(arr, mid) > m) start = mid + 1;
         }
+        return end;
+    }
 
-        int low = 0;
-        int high = maxNum;
-        while(low <= high) {
-            int mid = (low + high) / 2;
-            long calc = 0;
-            for(int i = 0 ; i < len ; i++) {
-                if(having[i]>mid)
-                    calc += (having[i] - mid);
-            }
-            if(calc < target) {
-                high = mid - 1;
-            } else if(calc > target) {
-                low = mid + 1;
-            } else {
-                high = mid;
-                break;
-            }
+    private static long getSum(int[] arr, int mid) {
+        long answer = 0;
+        for (int i = 0 ; i < arr.length ; i++) {
+            answer += Math.max(0, arr[i] - mid);
         }
-
-        System.out.println(high);
+        return answer;
     }
 }
