@@ -1,34 +1,21 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int[] nm = Arrays.stream(reader.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-        int[] arr = Arrays.stream(reader.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        long[] nm = Arrays.stream(scanner.nextLine().split(" ")).mapToLong(Long::parseLong).toArray();
+        long[] arr = Arrays.stream(scanner.nextLine().split(" ")).mapToLong(Long::parseLong).toArray();
         Arrays.sort(arr);
-        int answer = getHeight(arr, nm[1]);
-        System.out.println(answer);
-        reader.close();
-    }
-
-    private static int getHeight(int[] arr, int m) {
-        int start = 1, end = arr[arr.length - 1];
-        while(start <= end) {
-            int mid = (start + end) / 2;
-            if(getSum(arr, mid) == m) return mid;
-            else if(getSum(arr, mid) < m) end = mid - 1;
-            else if(getSum(arr, mid) > m) start = mid + 1;
+        long left = 1, right = arr[arr.length - 1];
+        while(left <= right) {
+            long mid = (left + right) / 2;
+            long sum = Arrays.stream(arr).map(i -> Math.max(0, i - mid)).sum();
+            if(nm[1] == sum) {
+                System.out.print(mid); return;
+            }
+            else if(nm[1] > sum) right = mid - 1;
+            else left = mid + 1;
         }
-        return end;
-    }
-
-    private static long getSum(int[] arr, int mid) {
-        long answer = 0;
-        for (int i = 0 ; i < arr.length ; i++) {
-            answer += Math.max(0, arr[i] - mid);
-        }
-        return answer;
+        System.out.print(right);
     }
 }
