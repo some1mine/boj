@@ -4,7 +4,7 @@ class Solution {
         for(int[] edge : edges) {
             conn[edge[0]][1]++; conn[edge[1]][0]++; max = Math.max(max, Math.max(edge[0], edge[1]));
         }
-        for(int i = 0 ; i <= max ; i++) {
+        for(int i = 1 ; i <= max ; i++) {
             if(conn[i][0] == 0 && conn[i][1] >= 2) answer[0] = i;
             if(conn[i][0] >= 1 && conn[i][1] == 0) answer[2]++;
             if(conn[i][0] >= 2 && conn[i][1] >= 2) answer[3]++;
