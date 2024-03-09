@@ -5,7 +5,7 @@ class Solution {
         return answer;
     }
     public boolean isOne(long l, int n) {
-        for(int i = 0 ; i < n && l > 1 ; i++, l /= 5) {
+        for( ; n-- > 0 && l > 1 ; l /= 5) {
             if(l % 5 == 2) return false;
         }
         return true;
