@@ -1,7 +1,6 @@
 class Solution {
     public int[] solution(int[][] edges) {
-        int[] answer = new int[4]; int max = Integer.MIN_VALUE;
-        int[][] conn = new int[1_000_001][2];
+        int max = 0; int[] answer = new int[4]; int[][] conn = new int[1_000_001][2];
         for(int[] edge : edges) {
             conn[edge[0]][1]++; conn[edge[1]][0]++; max = Math.max(max, Math.max(edge[0], edge[1]));
         }
