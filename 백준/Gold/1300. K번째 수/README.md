@@ -1,14 +1,18 @@
-# [Gold II] K번째 수 - 1300 
+# [Gold I] K번째 수 - 1300 
 
 [문제 링크](https://www.acmicpc.net/problem/1300) 
 
 ### 성능 요약
 
-메모리: 14300 KB, 시간: 168 ms
+메모리: 14284 KB, 시간: 164 ms
 
 ### 분류
 
-이분 탐색(binary_search), 매개 변수 탐색(parametric_search)
+이분 탐색, 매개 변수 탐색
+
+### 제출 일자
+
+2024년 3월 10일 13:15:05
 
 ### 문제 설명
 
