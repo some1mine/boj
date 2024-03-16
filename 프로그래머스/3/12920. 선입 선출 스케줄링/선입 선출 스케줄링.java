@@ -2,7 +2,7 @@ class Solution {
     public int solution(int n, int[] cores) {
         int answer = 0;
         if(n <= cores.length) return n;
-        
+
         int min = 1, max = (n * 10000) / cores.length, time = 0, cnt = cores.length;
         while(min <= max) {
             int mid = (min + max) / 2, temp = cores.length;
@@ -18,7 +18,7 @@ class Solution {
                 answer = i + 1; break;
             }
         }
-        
+
         return answer;
     }
 }
