@@ -11,9 +11,8 @@ class Solution {
             } else min = mid + 1;
         }
         int delta = cnt - n;
-        for(int i = cores.length - 1 ; i > -1 ; i--){
-            if(time % cores[i] == 0) delta--;
-            if(delta < 0) return i + 1;
+        for(int i = cores.length - 1 ; i > -1 ; i--) {
+            if(time % cores[i] == 0 && --delta < 0) return i + 1; 
         }
         return -1;
     }
