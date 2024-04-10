@@ -6,10 +6,8 @@ class Solution {
     public int solution(int n, int[][] lighthouse) {
         graph = IntStream.rangeClosed(0, n).mapToObj(i->new ArrayList()).toArray(List[]::new);
         for(int[] edge:lighthouse) {
-            graph[edge[0]].add(edge[1]);
-            graph[edge[1]].add(edge[0]);
+            graph[edge[0]].add(edge[1]); graph[edge[1]].add(edge[0]);
         }
-
         boolean[] visited = new boolean[n + 1];
         int[][] res = new int[n+1][2];
         Deque<Integer> stk = new ArrayDeque();
@@ -35,7 +33,6 @@ class Solution {
             }
             res[node][0]++;
         }
-
         return Math.min(res[1][0], res[1][1]);
     }
 }
