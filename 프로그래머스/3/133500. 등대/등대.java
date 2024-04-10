@@ -24,16 +24,16 @@ class Solution {
                         stk.offerLast(child);
                     }
                 }
-            } else { 
-                node = -node;
-                for(int child:graph[node]){
-                    if(res[child][0] > 0){
-                        res[node][0] += Math.min(res[child][0], res[child][1]);
-                        res[node][1] += res[child][0];
-                    }
-                }
-                res[node][0]++;
+                continue;
             }
+            node = -node;
+            for(int child:graph[node]){
+                if(res[child][0] > 0){
+                    res[node][0] += Math.min(res[child][0], res[child][1]);
+                    res[node][1] += res[child][0];
+                }
+            }
+            res[node][0]++;
         }
 
         return Math.min(res[1][0], res[1][1]);
