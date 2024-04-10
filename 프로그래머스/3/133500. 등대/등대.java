@@ -1,8 +1,6 @@
 import java.util.*;
 import java.util.stream.*;
 
-import static java.lang.System.*;
-
 class Solution {
     List<Integer>[] graph;
     public int solution(int n, int[][] lighthouse) {
