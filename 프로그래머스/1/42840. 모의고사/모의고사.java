@@ -9,8 +9,9 @@ class Solution {
                       new boolean[]{arr1[n % arr1.length] == answerArr[n], 
                                     arr2[n % arr2.length] == answerArr[n],
                                     arr3[n % arr3.length] == answerArr[n]}).toArray(boolean[][]::new);
-        final int[] result = IntStream.range(0, 3).map(i -> (int) Arrays.stream(scores).filter(a -> a[i]).count()).toArray();
-        return IntStream.range(0, 3).filter(n -> result[n] == Arrays.stream(result).max().getAsInt()).map(i -> i + 1)
-            .toArray();
+        final int[] result = IntStream.range(0, 3)
+            .map(i -> (int) Arrays.stream(scores).filter(a -> a[i]).count()).toArray();
+        return IntStream.range(0, 3)
+            .filter(n -> result[n] == Arrays.stream(result).max().getAsInt()).map(i -> i + 1).toArray();
     }
 }
