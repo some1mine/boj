@@ -8,8 +8,7 @@ class Solution {
         for(int[] r : road) {
             list.get(r[0]).add(new Road(r[1], r[2])); list.get(r[1]).add(new Road(r[0], r[2]));
         }
-        int[] distances = dijkstra(list, k);
-        return (int) Arrays.stream(distances).filter(i -> i <= k).count();
+        return (int) Arrays.stream(dijkstra(list, k)).filter(i -> i <= k).count();
     }
     public int[] dijkstra(List<List<Road>> list, int k) {
         int[] distances = new int[list.size()]; 
