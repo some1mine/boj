@@ -15,7 +15,7 @@ class Solution {
         return list.stream().mapToInt(i -> i).sorted().toArray();
     }
     public void fills(char[][] grid, int x, int y, int direction) {
-        int prev = haveBeen.size();
+        int prevSize = haveBeen.size();
         while(!haveBeen.contains(List.of(x, y, direction))) {
             List<Integer> list = List.of(x, y, direction);  haveBeen.add(list);
             y = direction == 0 ? y - 1 : direction == 2 ? y + 1 : y; // 이동
@@ -24,6 +24,6 @@ class Solution {
             x = x < 0 ? grid[0].length - 1 : x >= grid[0].length ? 0 : x;
             direction = grid[y][x] == 'L' ? (direction + 3) % 4 : grid[y][x] == 'R' ? (direction + 1) % 4 : direction; // 방향전환
         }
-        list.add(haveBeen.size() - prev);
+        list.add(haveBeen.size() - prevSize);
     }
 }
