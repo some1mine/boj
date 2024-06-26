@@ -12,9 +12,7 @@ class Solution {
                 }
             }
         }
-        int[] answer = list.stream().mapToInt(i -> i).toArray();
-        Arrays.sort(answer);
-        return answer;
+        return list.stream().mapToInt(i -> i).sorted().toArray();
     }
     public void fills(char[][] grid, int x, int y, int direction) {
         int prev = haveBeen.size();
