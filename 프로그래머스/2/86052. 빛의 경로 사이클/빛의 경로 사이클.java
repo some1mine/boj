@@ -20,7 +20,7 @@ class Solution {
         Set<List<Integer>> haveBeen = new HashSet<>();
         while(!haveBeen.contains(List.of(x, y, direction))) {
             List<Integer> list = List.of(x, y, direction);
-            haveBeen.add(list); roots.add(list);
+            haveBeen.add(list);
             y = direction == 0 ? y - 1 : direction == 2 ? y + 1 : y;
             x = direction == 1 ? x + 1 : direction == 3 ? x - 1 : x;
             if(y < 0) y = grid.length - 1;
@@ -30,6 +30,7 @@ class Solution {
             direction = getDirection(grid, x, y, direction);
         }
         list.add(haveBeen.size());
+        roots.addAll(haveBeen);
     }
     public int getDirection(char[][] grid, int x, int y, int direction) {
         if(grid[y][x] == 'L') return (direction + 3) % 4;
