@@ -2,7 +2,6 @@ import java.util.*;
 
 class Solution {
     public boolean solution(int[][] key, int[][] lock) {
-        boolean answer = false;
         Set<int[][]> resultSet = new HashSet<>(); resultSet.add(key); 
         int[][] key2 = turn(key ); resultSet.add(key2);
         int[][] key3 = turn(key2); resultSet.add(key3); 
@@ -10,7 +9,7 @@ class Solution {
         for(int[][] keys : resultSet) {
             if(check(keys, lock)) return true;
         }
-        return answer;
+        return false;
     }
     public boolean check(int[][] keys, int[][] lock) {
         for(int i = -keys.length ; i < keys.length ; i++) {
