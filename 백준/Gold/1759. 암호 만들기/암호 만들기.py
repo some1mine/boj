@@ -14,9 +14,7 @@ def statisfy():
 
 def combination(idx, depth):
     if depth == l:
-        if statisfy(): 
-            for c in choose: print(c, end = '')
-            print()
+        if statisfy(): print(''.join(choose))
         return
     for i in range(idx, len(arr)):
         choose.append(arr[i])
