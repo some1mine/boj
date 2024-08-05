@@ -4,7 +4,7 @@ input = sys.stdin.readline
 n, s = map(int, input().split())
 arr = list(map(int, input().split()))
 
-cnt = 0; tot = 0; flag = True
+cnt = 0; tot = 0
 
 def combination(idx):
 	global cnt, tot
