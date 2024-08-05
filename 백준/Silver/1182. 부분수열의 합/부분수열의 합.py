@@ -6,13 +6,13 @@ arr = list(map(int, input().split()))
 
 cnt = 0; choose = []
 
-def combination(idx, level):
+def combination(idx):
 	global cnt
 	if choose and sum(choose) == s: cnt += 1
 	for i in range(idx, n):
 		choose.append(arr[i])
-		combination(i + 1, level + 1)
+		combination(i + 1)
 		choose.remove(arr[i])
 
-combination(0, 0)
+combination(0)
 print(cnt)
