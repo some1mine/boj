@@ -8,11 +8,13 @@ cnt = 0; choose = []
 
 def combination(idx):
 	global cnt
-	if choose and sum(choose) == s: cnt += 1
-	for i in range(idx, n):
-		choose.append(arr[i])
-		combination(i + 1)
-		choose.remove(arr[i])
+	if idx == n: 
+		if choose and sum(choose) == s: cnt += 1
+		return
+	choose.append(arr[idx])
+	combination(idx + 1)
+	choose.pop()
+	combination(idx + 1)
 
 combination(0)
 print(cnt)
