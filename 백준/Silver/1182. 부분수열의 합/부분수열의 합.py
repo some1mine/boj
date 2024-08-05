@@ -4,17 +4,17 @@ input = sys.stdin.readline
 n, s = map(int, input().split())
 arr = list(map(int, input().split()))
 
-cnt = 0; choose = []
+cnt = 0; tot = 0; flag = True
 
 def combination(idx):
-	global cnt
+	global cnt, tot
 	if idx == n: 
-		if choose and sum(choose) == s: cnt += 1
+		if tot == s: cnt += 1
 		return
-	choose.append(arr[idx])
+	tot += arr[idx]
 	combination(idx + 1)
-	choose.pop()
+	tot -= arr[idx]
 	combination(idx + 1)
 
 combination(0)
-print(cnt)
+print(cnt - 1 if s == 0 else cnt)
