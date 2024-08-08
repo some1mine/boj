@@ -1,36 +1,37 @@
-def func(lev):
-	global S, chars, cnt, choose, ans
+import sys
+input = sys.stdin.readline
 
-	# base case
-	if lev == len(S):
-		ans += 1
+s = input().rstrip()
+
+cnt = 0
+choose = []
+check = [False] * len(s)
+
+def factorial(n):
+	if n <= 1: return 1
+	return n * factorial(n - 1)
+
+
+def statisfy():
+	for i in range(len(s) - 1):
+		if choose[i + 1] == choose[i]: return False
+	return True
+
+def permuation(level):
+	global cnt
+	if level == len(s):
+		cnt += statisfy()
 		return
 
-	# recursive case
-	for c in chars:
-		if cnt[c] == 0:
-			continue
+	for i in range(len(s)):
+		if check[i]: continue
+		choose.append(s[i])
+		check[i] = True
+		permuation(level + 1)
+		check[i] = False
+		choose.pop()
 
-		if (not choose) or (choose[-1] != c):
-			cnt[c] -= 1
-			choose.append(c)
-			func(lev + 1)
-			cnt[c] += 1
-			choose.pop()
+permuation(0)
 
-S = input()
-chars = set()
-cnt = dict()
-
-for c in S:
-	chars.add(c)
-	if c not in cnt:
-		cnt[c] = 0
-	cnt[c] += 1
-
-choose = []
-ans = 0
-
-func(0)
-
-print(ans)
+for l in set(s): cnt //= factorial(s.count(l))
+print(cnt)
