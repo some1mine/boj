@@ -1,5 +1,4 @@
 import sys
-import copy
 input = sys.stdin.readline
 
 n, m = map(int, input().rstrip().split())
