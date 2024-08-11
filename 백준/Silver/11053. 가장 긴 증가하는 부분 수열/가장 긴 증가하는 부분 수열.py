@@ -2,15 +2,13 @@ import sys
 input = sys.stdin.readline
 
 n = int(input().rstrip())
-arr = list(map(int, input().rstrip().split()))
-result = [1 for _ in range(n)]
+arr = [0] + list(map(int, input().rstrip().split()))
+result = [-1 for _ in range(n + 1)]; result[1] = 1
 
-def fill(n):
-	global result
-	if result[n] == 1:
-		for i in range(n - 1, -1, -1):
-			if arr[i] < arr[n]: result[n] = max(result[n], fill(i) + 1)
-	return result[n]
+for i in range(2, n + 1):
+	m = 0
+	for j in range(1, n):
+		if arr[i] > arr[j]: m = max(m, result[j])
+	result[i] = m + 1
 
-for i in range(n): fill(i)
 print(max(result))
