@@ -1,7 +1,7 @@
 import sys
 input = sys.stdin.readline
 
-a = list(input().rstrip()); b = list(input().rstrip())
+a = input().rstrip(); b = input().rstrip()
 result = [[0 for _ in range(len(b) + 1)] for _ in range(len(a) + 1)]
 
 for i in range(1, len(a) + 1):
