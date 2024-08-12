@@ -8,13 +8,13 @@ def count():
 	answer = 1
 	for k in range(n):
 		cnt = 1
-		for l in range(1, n):        
-			if(arr[k][l] == arr[k][l - 1]): cnt += 1
+		for l in range(n - 1):        
+			if(arr[k][l] == arr[k][l + 1]): cnt += 1
 			else: cnt = 1
 			answer = max(answer, cnt)
 		cnt = 1
-		for l in range(1, n):
-			if(arr[l][k] == arr[l - 1][k]): cnt += 1
+		for l in range(n - 1):
+			if(arr[l][k] == arr[l + 1][k]): cnt += 1
 			else: cnt = 1
 			answer = max(answer, cnt)
 
