@@ -8,6 +8,7 @@ s = arr[0][0]; cnt = 0
 def go(y, x):
 	global cnt, s
 	cnt = max(cnt, len(s))
+	if cnt > 25: return
 	for d in directions:
 		dy = y + d[0]; dx = x + d[1]
 		if dy < 0 or dx < 0 or dy >= r or dx >= c or arr[dy][dx] in s: continue
