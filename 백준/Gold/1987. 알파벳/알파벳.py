@@ -1,19 +1,15 @@
-import sys
-input = sys.stdin.readline
-r, c = map(int, input().rstrip().split())
-arr = []
-for i in range(r): arr.append(input().rstrip())
+r, c = map(int, input().split())
+arr = [input() for _ in range(r)]; chars = [False for _ in range(26)]
+cnt = 0; length = 0
 directions = [[0,-1],[0,1],[-1,0],[1,0]]
-s = arr[0][0]; cnt = 0
 def go(y, x):
-	global cnt, s
-	cnt = max(cnt, len(s))
-	if cnt > 25: return
+	global cnt, chars, length
+	if cnt > 25 or y < 0 or x < 0 or y >= r or x >= c or chars[ord(arr[y][x]) - ord('A')]: return
+	chars[ord(arr[y][x]) - ord('A')] = True; length += 1
+	cnt = max(cnt, length)
 	for d in directions:
 		dy = y + d[0]; dx = x + d[1]
-		if dy < 0 or dx < 0 or dy >= r or dx >= c or arr[dy][dx] in s: continue
-		s += arr[dy][dx]
 		go(dy, dx)
-		s = s[:len(s) - 1]
+	chars[ord(arr[y][x]) - ord('A')] = False; length -= 1
 go(0, 0)
 print(cnt)
