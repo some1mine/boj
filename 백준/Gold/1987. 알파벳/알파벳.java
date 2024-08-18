@@ -17,8 +17,8 @@ public class Main {
 	public static void go(int y, int x) {
 		if(y < 0 || x < 0 || y >= rc[0] || x >= rc[1]) return;
 		if(cnt > 'z' - 'a') return;
-		int toBinary = 1 << arr[y][x]; boolean visited = (chars & toBinary) > 0;
-        if(visited) return;
+		int toBinary = 1 << arr[y][x];
+        if((chars & toBinary) > 0) return;
 		length++; chars |= toBinary; cnt = Math.max(cnt, length);
 		for (int[] d : directions) {
 			int dy = y + d[0], dx = x + d[1]; go(dy, dx);
