@@ -9,9 +9,8 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		rc = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 		arr = new char[rc[0]][rc[1]];
-		for (int i = 0; i < rc[0]; i++) arr[i] = scanner.nextLine().toCharArray();
-		go(0, 0);
-		System.out.print(cnt);
+		for(int i = 0; i < rc[0]; i++) arr[i] = scanner.nextLine().toCharArray();
+		go(0, 0); System.out.print(cnt);
 	}
 
 	public static void go(int y, int x) {
@@ -20,7 +19,7 @@ public class Main {
 		int toBinary = 1 << arr[y][x];
         if((chars & toBinary) > 0) return;
 		length++; chars |= toBinary; cnt = Math.max(cnt, length);
-		for (int[] d : directions) {
+		for(int[] d : directions) {
 			int dy = y + d[0], dx = x + d[1]; go(dy, dx);
 		}
 		length--; chars -= toBinary;
