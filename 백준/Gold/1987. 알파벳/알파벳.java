@@ -9,19 +9,20 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		rc = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 		arr = new char[rc[0]][rc[1]];
-		for(int i = 0 ; i < rc[0] ; i++) arr[i] = scanner.nextLine().toCharArray();
+		for (int i = 0; i < rc[0]; i++) arr[i] = scanner.nextLine().toCharArray();
 		go(0, 0);
 		System.out.print(cnt);
 	}
+
 	public static void go(int y, int x) {
-		if(cnt > 'z' - 'a') return;
 		if(y < 0 || x < 0 || y >= rc[0] || x >= rc[1]) return;
-		if((chars & (1 << arr[y][x])) > 0) return;
-		length++; cnt = Math.max(cnt, length); chars |= (1 << arr[y][x]);
-		for(int[] d : directions) {
+		if(cnt > 'z' - 'a') return;
+		int toBinary = 1 << arr[y][x]; boolean visited = (chars & toBinary) > 0;
+        if(visited) return;
+		length++; chars |= toBinary; cnt = Math.max(cnt, length);
+		for (int[] d : directions) {
 			int dy = y + d[0], dx = x + d[1]; go(dy, dx);
 		}
-		if((chars & (1 << arr[y][x])) > 0) chars -= (1 << arr[y][x]);
-		length--;
+		length--; chars -= toBinary;
 	}
 }
