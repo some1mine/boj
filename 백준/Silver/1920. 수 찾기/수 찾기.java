@@ -3,9 +3,9 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int n = Integer.parseInt(scanner.nextLine());
+        scanner.nextLine();
         int[] arr1 = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).sorted().toArray();
-        int m = Integer.parseInt(scanner.nextLine());
+        scanner.nextLine();
         int[] arr2 = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         for(int i : arr2) System.out.println(binarySearch(arr1, i));
     }
