@@ -7,14 +7,16 @@ public class Main {
         int[] arr1 = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).sorted().toArray();
         int m = Integer.parseInt(scanner.nextLine());
         int[] arr2 = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-        for(int i : arr2) binarySearch(arr1, i);
+        for(int i : arr2) System.out.println(binarySearch(arr1, i));
     }
-    public static void binarySearch(int[] arr, int target) {
-        int cur = -1, step = arr.length;
-        while(step > 0) {
-            while(cur + step < arr.length && arr[cur + step] <= target) cur += step;
-            step /= 2;
+    public static int binarySearch(int[] arr, int target) {
+        int start = 0, end = arr.length - 1, mid = -1;
+        while(start <= end) {
+            mid = (start + end) / 2;
+            if(arr[mid] > target) end = mid - 1;
+            if(arr[mid] < target) start = mid + 1;
+            if(arr[mid] == target) return 1;
         }
-        System.out.println(cur < 0 || cur >= arr.length || arr[cur] != target ? 0 : 1);
+        return 0;
     }
 }
