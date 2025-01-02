@@ -13,6 +13,5 @@ public class Main {
         st = new StringTokenizer(reader.readLine());
         while(st.hasMoreTokens()) sb.append(set.contains(st.nextToken()) ? 1 : 0).append("\n");
         System.out.print(sb);
-        reader.close(); 
     }
 }
