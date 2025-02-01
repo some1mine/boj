@@ -4,25 +4,24 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(reader.readLine());
-        int n = Integer.parseInt(st.nextToken()), c = Integer.parseInt(st.nextToken());
-        int[] arr = new int[n];
-        for(int i = 0 ; i < n ; i++) arr[i] = Integer.parseInt(reader.readLine());
-        int left = 0, right = arr[n - 1];
+        int[] nc = Arrays.stream(reader.readLine().split("\\s")).mapToInt(Integer::parseInt).toArray();
+        int[] arr = new int[nc[0]];
+        for(int i = 0 ; i < nc[0] ; i++) arr[i] = Integer.parseInt(reader.readLine());
         Arrays.sort(arr);
+        int left = 0, right = arr[nc[0] - 1];
         while(left <= right) {
-            if(getCount(left, right, arr) < c) right = (left + right) / 2 - 1;
+            if(count(left, right, arr) < nc[1]) right = (left + right) / 2 - 1;
             else left = (left + right) / 2 + 1;
         }
         System.out.print(right);
     }
-    public static int getCount(int left, int right, int[] arr) {
-        int answer = 1, cur = arr[0], mid = (left + right) / 2; 
+    public static int count(int left, int right, int[] arr) {
+        int count = 1, cur = arr[0], mid = (left + right) / 2;
         for(int i : arr) {
             if(i - cur >= mid) {
-                answer++; cur = i;
+                count++; cur = i;
             }
         }
-        return answer;
+        return count;
     }
 }
