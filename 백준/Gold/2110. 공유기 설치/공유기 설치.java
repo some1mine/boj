@@ -8,20 +8,23 @@ public class Main {
         int[] arr = new int[nc[0]];
         for(int i = 0 ; i < nc[0] ; i++) arr[i] = Integer.parseInt(reader.readLine());
         Arrays.sort(arr);
-        int left = 0, right = arr[nc[0] - 1];
-        while(left <= right) {
-            if(count(left, right, arr) < nc[1]) right = (left + right) / 2 - 1;
-            else left = (left + right) / 2 + 1;
-        }
-        System.out.print(right);
+        System.out.print(solution(arr, nc[0], nc[1]));
     }
-    public static int count(int left, int right, int[] arr) {
-        int count = 1, cur = arr[0], mid = (left + right) / 2;
-        for(int i : arr) {
-            if(i - cur >= mid) {
-                count++; cur = i;
+    public static int solution(int[] arr, int n, int c) {
+        int cur = -1, step = arr[n - 1] + 1;
+        while(step > 0) {
+            while(cur + step <= arr[n - 1] + 1 && cnt(arr, n, cur + step) >= c) cur += step;
+            step >>= 1;
+        }
+        return cur;
+    }
+    public static int cnt(int[] arr, int n, int d) {
+        int cnt = 1, start = 0;
+        for(int i = 1 ; i < n ; i++) {
+            if(arr[i] - arr[start] >= d) {
+                start = i; cnt += 1;
             }
         }
-        return count;
+        return cnt;
     }
 }
