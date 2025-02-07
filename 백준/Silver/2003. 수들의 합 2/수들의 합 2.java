@@ -5,17 +5,13 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int[] nm = Arrays.stream(scanner.nextLine().split("\\s")).mapToInt(Integer::parseInt).toArray();
         int[] arr = Arrays.stream(scanner.nextLine().split("\\s")).mapToInt(Integer::parseInt).toArray();
-        int[] dp = new int[nm[0] + 1];
+        int sum = 0, end = -1, answer = 0;
         for (int i = 0; i < nm[0]; i++) {
-            for (int j = 0; j <= i; j++) dp[i + 1] += arr[j];
-        }
-        int start = 0, end = 1, answer = 0;
-        while(end <= nm[0]) {
-            if (dp[end] - dp[start] > nm[1]) {
-                start++; continue;
+            while (end + 1 < nm[0] && sum + arr[end + 1] <= nm[1]) {
+                end++; sum += arr[end];
             }
-            if (dp[end] - dp[start] == nm[1]) answer++;
-            end++;
+            if (sum == nm[1]) answer++;
+            sum -= arr[i];
         }
         System.out.println(answer);
     }
