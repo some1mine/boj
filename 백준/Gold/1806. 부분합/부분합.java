@@ -1,32 +1,21 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
-    public static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    public static void main(String[] args) throws Exception {
-        StringTokenizer token = new StringTokenizer(reader.readLine(), " ");
-        int n = Integer.parseInt(token.nextToken());
-        int s = Integer.parseInt(token.nextToken());
-        int[] arr = new int[n];
-        token = new StringTokenizer(reader.readLine(), " ");
-        
-        for (int i = 0; i < n; i++) arr[i] = Integer.parseInt(token.nextToken());
-
-        int start = 0, end = 1;
-        int sum = arr[start], len = Integer.MAX_VALUE;
-        
-        while(true) {
-            if(sum >= s) {
-                len = Math.min(len, end - start);
-                sum -= arr[start++];
-            } else if(end == n) {
-                break;
-            } else {
-                sum += arr[end++];
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] ns = Arrays.stream(scanner.nextLine().split("\\s")).mapToInt(Integer::parseInt).toArray();
+        int[] arr = Arrays.stream(scanner.nextLine().split("\\s")).mapToInt(Integer::parseInt).toArray();
+        int ans = 100000000, sum = 0, end = -1;
+        for (int start = 0; start < ns[0]; start++) {
+            while (end + 1 < ns[0] && sum + arr[end + 1] < ns[1]) {
+                end++; sum += arr[end];
             }
+            if (sum < ns[1] && end + 1 < ns[0]) {
+                end++; sum += arr[end];
+            }
+            if (end < ns[0] && sum >= ns[1]) ans = Math.min(ans, end - start + 1);
+            sum -= arr[start];
         }
-        if(len == Integer.MAX_VALUE) len = 0;
-        System.out.println(len);
+        System.out.println(ans == 100000000 ? 0 : ans);
     }
 }
