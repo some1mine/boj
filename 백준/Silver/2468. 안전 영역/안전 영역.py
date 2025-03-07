@@ -4,7 +4,7 @@ n = int(input())
 arr = [list(map(int, input().split())) for _ in range(n)]; dirs = [[-1, 0], [0, 1], [1, 0], [0, -1]]
 ans = 0
 
-def dfs(arr, y, x, h):
+def bfs(arr, y, x, h):
     global visited
     lst = deque(); lst.append([y, x]); visited[y][x] = True
     while lst:
@@ -22,7 +22,7 @@ def count(arr, h):
     for y in range(n):
         for x in range(n):
             if not visited[y][x] and arr[y][x] > h:
-                ans += 1; dfs(arr, y, x, h)
+                ans += 1; bfs(arr, y, x, h)
     return ans
 
 for i in range(101):
