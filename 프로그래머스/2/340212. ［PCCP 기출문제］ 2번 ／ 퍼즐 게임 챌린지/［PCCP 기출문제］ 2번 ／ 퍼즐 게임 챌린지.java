@@ -13,7 +13,7 @@ class Solution {
         return min;
     }
     long count(int[] diffs, int[] times, int level) {
-        long answer = 0; answer += diffs[0] > level ? (diffs[0] - level) * (times[0] + 1) : times[0];
+        long answer = diffs[0] > level ? (diffs[0] - level) * (times[0] + 1) : times[0];
         for(int i = 1 ; i < diffs.length ; i++) {
             answer += times[i];
             if(diffs[i] > level) answer += (diffs[i] - level) * (times[i] + times[i - 1]);
