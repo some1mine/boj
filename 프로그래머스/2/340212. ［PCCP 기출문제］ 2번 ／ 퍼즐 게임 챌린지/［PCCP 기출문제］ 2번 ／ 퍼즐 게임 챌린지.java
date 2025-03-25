@@ -9,7 +9,6 @@ class Solution {
             if(count(diffs, times, level) <= limit) max = level - 1;
             if(count(diffs, times, level) > limit) min = level + 1;
         }
-        if(count(diffs, times, min - 1) <= limit) min -= 1;
         return min;
     }
     long count(int[] diffs, int[] times, int level) {
