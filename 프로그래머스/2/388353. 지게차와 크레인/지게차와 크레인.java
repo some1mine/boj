@@ -33,14 +33,15 @@ class Solution {
             int[] cur = queue.poll();
             int y = cur[0], x = cur[1];
             if(storage[y][x] == request) {
-                answer++; storage[y][x] = '\0'; visited[y][x] = true;
+                answer++; storage[y][x] = '\0';
             } else if(storage[y][x] == '\0' && !visited[y][x]) {
                 for(int[] d : directions) {
                     int dy = y + d[0], dx = x + d[1];
                     if(dy < 0 || dy >= storage.length || dx < 0 || dx >= storage[0].length) continue;
-                    queue.offer(new int[]{dy, dx}); visited[y][x] = true;
+                    queue.offer(new int[]{dy, dx});
                 }
             }
+             visited[y][x] = true;
         }
         return answer;
     }
