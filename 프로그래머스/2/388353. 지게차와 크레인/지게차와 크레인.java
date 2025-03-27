@@ -26,11 +26,9 @@ class Solution {
         return answer;
     }
     int bfs(char[][] storage, int[] a, int[] b, char request, boolean[][] visited) {
-        int answer = 0;
-        Queue<int[]> queue = new LinkedList<>(); queue.offer(a); queue.offer(b);
+        int answer = 0; Queue<int[]> queue = new LinkedList<>(); queue.offer(a); queue.offer(b);
         while(!queue.isEmpty()) {
-            int[] cur = queue.poll();
-            int y = cur[0], x = cur[1];
+            int[] cur = queue.poll(); int y = cur[0], x = cur[1];
             if(storage[y][x] == '\0' && !visited[y][x]) {
                 for(int[] d : directions) {
                     int dy = y + d[0], dx = x + d[1];
