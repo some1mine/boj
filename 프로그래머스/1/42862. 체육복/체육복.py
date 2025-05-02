@@ -1,14 +1,10 @@
 def solution(n, lost, reserve):
-    save_count = 0
-    tmp = list(filter(lambda x : x in reserve, lost))
-    for i in tmp:
-        lost.remove(i); reserve.remove(i)
-    reserve.sort(); lost.sort()
-    for i in lost:
-        if i - 1 in reserve:
-            reserve.remove(i - 1)
-            save_count += 1
-        elif i + 1 in reserve:
-            reserve.remove(i + 1)
-            save_count += 1
-    return n - len(lost) + save_count
+    students = [0 for _ in range(n)]
+    for i in lost: students[i - 1] -= 1
+    for i in reserve: students[i - 1] += 1
+    for i in range(n):
+        if i > 0 and students[i] == -1 and students[i - 1] == 1: 
+            students[i] = 0; students[i - 1] = 0
+        elif i < n - 1 and students[i] == -1 and students[i + 1] == 1:
+            students[i] = 0; students[i + 1] = 0
+    return len(students) - students.count(-1)
