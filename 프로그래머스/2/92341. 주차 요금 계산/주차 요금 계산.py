@@ -1,5 +1,3 @@
-import math
-
 def getTime(a, b):
     return (int(b.split(':')[0]) - int(a.split(':')[0])) * 60 + int(b.split(":")[1]) - int(a.split(':')[1])
 
