@@ -11,6 +11,5 @@ def isPrime(n):
         if n % i == 0: return False
     return True
 
-def solution(n, k): return sum(1 for s in convert(n, k).split('0') if s != '' and isPrime(int(s)))
-    
-    
+def solution(n, k): 
+    return sum(1 for s in convert(n, k).split('0') if s != '' and isPrime(int(s)))
