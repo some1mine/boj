@@ -7,7 +7,6 @@ def getCharge(fees, v):
     plus = (v - fees[0]) // fees[2] if (v - fees[0]) % fees[2] == 0 else (v - fees[0]) // fees[2] + 1
     return fees[1] + max(0, plus) * fees[3]
     
-    
 def solution(fees, records):
     inout = {}; results = {}; answer = 0
     for r in records:
