@@ -1,7 +1,7 @@
 def getTime(a, b): # 총 시간 구하기
     return (int(b.split(':')[0]) - int(a.split(':')[0])) * 60 + int(b.split(":")[1]) - int(a.split(':')[1])
 
-def getCharge(fees, v): # 총 금액 구하기
+def getCharge(fees, v): # 총 금액 구하기(단위 시간 올림)
     plus = (v - fees[0]) // fees[2] if (v - fees[0]) % fees[2] == 0 else (v - fees[0]) // fees[2] + 1
     return fees[1] + max(0, plus) * fees[3]
     
