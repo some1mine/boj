@@ -1,9 +1,9 @@
 def convert(n, k):
     ans = ''
     while n > 0:
-        ans += str(n % k)
+        ans = str(n % k) + ans
         n //= k
-    return ans[::-1]
+    return ans
 
 def isPrime(n):
     if n == 1: return False
