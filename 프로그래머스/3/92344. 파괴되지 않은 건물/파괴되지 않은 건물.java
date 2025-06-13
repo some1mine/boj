@@ -3,7 +3,7 @@ class Solution {
         int r = board.length, c = board[0].length, answer = r * c;
         int[][] dp = new int[r + 2][c + 2];
         for(int[] s : skill) {
-            s[5] *= s[0] == 1 ? -1 : 1;
+            s[5] = s[0] == 1 ? -s[5] : s[5];
             dp[s[1] + 1][s[2] + 1] += s[5]; dp[s[1] + 1][s[4] + 2] -= s[5];
             dp[s[3] + 2][s[2] + 1] -= s[5]; dp[s[3] + 2][s[4] + 2] += s[5];
         }
