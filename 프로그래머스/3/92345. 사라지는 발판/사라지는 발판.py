@@ -18,7 +18,7 @@ def func(board, cury, curx, opy, opx):
     
     cboard = deepcopy(board); cboard[cury][curx] = 0;  win_case = []; lose_case = []
     for i in range(4):
-        ny = cury + dy[i]; nx = curx + dx[i];  nres, ncnt = func(cboard, opy, opx, ny, nx)
+        ny = cury + dy[i]; nx = curx + dx[i]; nres, ncnt = func(cboard, opy, opx, ny, nx)
         if nres == False: win_case.append(ncnt)
         else: lose_case.append(ncnt)
     if win_case: return True, min(win_case) + 1
