@@ -18,7 +18,7 @@ def func(board, cury, curx, opy, opx):
         if nres == False: win_case.append(ncnt)
         else: lose_case.append(ncnt)
     if win_case: return True, min(win_case) + 1
-    else: return False, max(lose_case) + 1
+    return False, max(lose_case) + 1
 
 
 def solution(board, aloc, bloc):
