@@ -14,6 +14,5 @@ def func(board, cury, curx, opy, opx):
         else: lose_case.append(ncnt)
     return (True, min(win_case) + 1) if win_case else (False, max(lose_case) + 1)
 
-
 def solution(board, aloc, bloc):
     return func(board, *aloc, *bloc)[1]
