@@ -2,7 +2,7 @@ from copy import deepcopy;
 
 dy = [-1, 0, 1, 0]; dx = [0, 1, 0, -1]
 
-def out_range(y, x, board): return not 0 <= y < len(board) or not 0 <= x < len(board[0])
+def out_range(y, x, board): return 0 > y or y >= len(board) or 0 > x or x >= len(board[0])
 
 def func(board, cury, curx, opy, opx):
     cnt = sum(out_range(cury + dy[i], curx + dx[i], board) or board[cury + dy[i]][curx + dx[i]] == 0 for i in range(4))
