@@ -11,15 +11,15 @@ def func(board, cury, curx, opy, opx):
             for i in range(4)) == 4: return False, 0
     if out_range(opy, opx, board) or board[opy][opx] == 0: return True, 0
 
-    copied = deepcopy(board); copied[cury][curx] = 0; win_case = []; lose_case = []
+    copied = deepcopy(board); copied[cury][curx] = 0; wins = []; loses = []
     
     for i in range(4):
-        ny = cury + dy[i]; nx = curx + dx[i]; nres, ncnt = func(copied, opy, opx, ny, nx)
-        if nres: lose_case.append(ncnt)
-        else: win_case.append(ncnt)
+        nres, ncnt = func(copied, opy, opx, cury + dy[i], curx + dx[i])
+        if nres: loses.append(ncnt)
+        else: wins.append(ncnt)
         
-    if win_case: return True, min(win_case) + 1
-    else: return False, max(lose_case) + 1
+    if wins: return True, min(wins) + 1
+    else: return False, max(loses) + 1
 
 def solution(board, aloc, bloc):
     return func(board, *aloc, *bloc)[1]
