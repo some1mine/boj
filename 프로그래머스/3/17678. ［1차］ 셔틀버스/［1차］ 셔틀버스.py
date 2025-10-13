@@ -2,9 +2,7 @@ def to_min(time_str):
     h, m = map(int, time_str.split(':'))
     return h * 60 + m
 
-def __str__(time):
-    h = time // 60; m = time % 60
-    return f'{h:02d}:{m:02d}'
+def __str__(time): return f'{(time // 60):02d}:{(time % 60):02d}'
 
 def solution(n, t, m, timetable):
     crews = sorted(to_min(x) for x in timetable)
