@@ -8,6 +8,7 @@ class Solution {
             targetCop = targetCop < p[1] ? p[1] : targetCop;
         }
         targetAlp = Math.max(alp, targetAlp); targetCop = Math.max(cop, targetCop);
+        
         int[][] targets = Arrays.copyOf(problems, problems.length + 2);
         targets[targets.length - 1] = new int[]{0,0,1,0,1};
         targets[targets.length - 2] = new int[]{0,0,0,1,1};
@@ -20,7 +21,7 @@ class Solution {
                 for(int[] p : targets) {
                     if(i >= p[0] && j >= p[1]) {
                         int nextAlp = Math.min(targetAlp, i + p[2]), nextCop = Math.min(targetCop, j + p[3]);
-                        dp[nextAlp][nextCop] = Math.min(dp[nextAlp][nextCop], dp[i][j] + p[4]);
+                            dp[nextAlp][nextCop] = Math.min(dp[nextAlp][nextCop], dp[i][j] + p[4]);
                     }
                 }
             }
