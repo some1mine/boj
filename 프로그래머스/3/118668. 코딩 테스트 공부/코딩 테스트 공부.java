@@ -2,12 +2,11 @@ import java.util.*;
 
 class Solution {
     public int solution(int alp, int cop, int[][] problems) {
-        int targetAlp = -1, targetCop = -1;
+        int targetAlp = alp, targetCop = cop;
         for(int[] p : problems) {
             targetAlp = targetAlp < p[0] ? p[0] : targetAlp;
             targetCop = targetCop < p[1] ? p[1] : targetCop;
         }
-        targetAlp = Math.max(alp, targetAlp); targetCop = Math.max(cop, targetCop);
         
         int[][] targets = Arrays.copyOf(problems, problems.length + 2);
         targets[targets.length - 1] = new int[]{0,0,1,0,1};
