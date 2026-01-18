@@ -20,7 +20,7 @@ class Solution {
                 for(int[] p : targets) {
                     if(i >= p[0] && j >= p[1]) {
                         int nextAlp = Math.min(targetAlp, i + p[2]), nextCop = Math.min(targetCop, j + p[3]);
-                            dp[nextAlp][nextCop] = Math.min(dp[nextAlp][nextCop], dp[i][j] + p[4]);
+                        dp[nextAlp][nextCop] = Math.min(dp[nextAlp][nextCop], dp[i][j] + p[4]);
                     }
                 }
             }
