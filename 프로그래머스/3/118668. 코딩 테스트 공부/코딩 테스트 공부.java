@@ -12,7 +12,7 @@ class Solution {
         targets[targets.length - 1] = new int[]{0,0,1,0,1};
         targets[targets.length - 2] = new int[]{0,0,0,1,1};
         
-        int[][] dp = new int[targetAlp + 2][targetCop + 2];
+        int[][] dp = new int[targetAlp + 1][targetCop + 1];
         for(int[] d : dp) Arrays.fill(d, 9999999); dp[alp][cop] = 0;
         
         for(int i = alp ; i < targetAlp + 1 ; i++) {
