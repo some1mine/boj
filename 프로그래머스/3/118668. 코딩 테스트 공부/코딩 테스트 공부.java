@@ -15,12 +15,12 @@ class Solution {
         int[][] dp = new int[targetAlp + 1][targetCop + 1];
         for(int[] d : dp) Arrays.fill(d, 9999999); dp[alp][cop] = 0;
         
-        for(int i = alp ; i < targetAlp + 1 ; i++) {
-            for(int j = cop ; j < targetCop + 1 ; j++) {
+        for(int a = alp ; a < targetAlp + 1 ; a++) {
+            for(int c = cop ; c < targetCop + 1 ; c++) {
                 for(int[] p : targets) {
-                    if(i >= p[0] && j >= p[1]) {
-                        int nextAlp = Math.min(targetAlp, i + p[2]), nextCop = Math.min(targetCop, j + p[3]);
-                        dp[nextAlp][nextCop] = Math.min(dp[nextAlp][nextCop], dp[i][j] + p[4]);
+                    if(a >= p[0] && c >= p[1]) {
+                        int nextAlp = Math.min(targetAlp, a + p[2]), nextCop = Math.min(targetCop, c + p[3]);
+                        dp[nextAlp][nextCop] = Math.min(dp[nextAlp][nextCop], dp[a][c] + p[4]);
                     }
                 }
             }
