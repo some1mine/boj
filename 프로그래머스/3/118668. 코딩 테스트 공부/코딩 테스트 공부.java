@@ -4,8 +4,7 @@ class Solution {
     public int solution(int alp, int cop, int[][] problems) {
         int targetAlp = alp, targetCop = cop;
         for(int[] p : problems) {
-            targetAlp = Math.max(targetAlp, p[0]);
-            targetCop = Math.max(targetCop, p[1]);
+            targetAlp = Math.max(targetAlp, p[0]); targetCop = Math.max(targetCop, p[1]);
         }
         
         int[][] targets = Arrays.copyOf(problems, problems.length + 2);
