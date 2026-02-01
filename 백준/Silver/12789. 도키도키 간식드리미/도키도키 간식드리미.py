@@ -1,6 +1,6 @@
 input(); arr = list(map(int, input().split())); side = [99999]; seq = 1;
 for i in arr:
-    if i != seq and side[-1] != seq: 
+    if i != seq != side[-1]: 
     	side.append(i); continue
     if i == seq: seq += 1
     while side and side[-1] == seq:
