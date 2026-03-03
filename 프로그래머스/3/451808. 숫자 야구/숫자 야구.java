@@ -17,7 +17,7 @@ class Solution {
         }
         for(int i = 1 ; i < 10 ; i++) {
             if(num.contains(Integer.toString(i))) continue;
-            String newNum = num + i; init(newNum, depth + 1);
+            init(num + i, depth + 1);
         }
     }
     public String[] filter(String num, int strike, int ball) {
