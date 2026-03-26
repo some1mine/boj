@@ -26,9 +26,8 @@ class Solution {
                 while(start > 0 && message.charAt(start - 1) != ' ') start--;
                 while(i < message.length() - 1 && message.charAt(i + 1) != ' ') i++;
                 String word = message.substring(start, i + 1);
-                if(!others.contains(word)) {
-                    answer++; others.add(word);
-                }
+                if(others.contains(word)) continue;
+                answer++; others.add(word);
             }
         }
         return answer;
