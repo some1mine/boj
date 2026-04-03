@@ -6,9 +6,8 @@ class Solution {
         int answer = 0, n = message.length(); boolean[] isSpoiler = new boolean[n];
         List<int[]> words = new ArrayList<>(); Set<String> others = new HashSet<>();
         for (int[] spoiler : spoiler_ranges) IntStream.range(spoiler[0], spoiler[1] + 1).forEach(i -> isSpoiler[i] = true);
-        for(int i = 0 ; i < n ; i++) {
+        for(int i = 0, start = i ; i < n ; i++, start = i) {
             if(message.charAt(i) == ' ') continue;
-            int start = i;
             while(i < n && message.charAt(i) != ' ') i++;
             words.add(new int[]{start, --i});
         }
