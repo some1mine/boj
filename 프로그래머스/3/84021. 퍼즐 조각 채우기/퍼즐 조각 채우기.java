@@ -1,25 +1,23 @@
 import java.util.*;
-import java.util.stream.*;
 
 class Solution {
     public int[][] directions = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
     public int solution(int[][] game_board, int[][] table) {
         int answer = 0; List<int[][]> block = collect(table, 1), target = collect(game_board, 0);
-        boolean[] visited1 = new boolean[block.size()], visited2 = new boolean[target.size()];
+        boolean[] visitedB = new boolean[block.size()], visitedT = new boolean[target.size()];
         for(int i = 0 ; i < block.size() ; i++) {
             int[][] t = block.get(i);
             for(int j = 0 ; j < target.size() ; j++) {
                 int[][] b = target.get(j);
                 for(int k = 0 ; k < 4 ; k++) {
-                    if(!visited1[i] && !visited2[j] && isSame(t, b)) {
+                    if(!visitedB[i] && !visitedT[j] && isSame(t, b)) {
                         answer += (int) Arrays.stream(t).flatMapToInt(Arrays::stream).sum(); 
-                        visited1[i] = true; visited2[j] = true; break;
+                        visitedB[i] = true; visitedT[j] = true; break;
                     }
                     t = rotate(t);
                 }
             }
         }
-        for(int[][] b : target) System.out.println(Arrays.deepToString(b));
         return answer;
     }
     public boolean isSame(int[][] t, int[][] b) {
