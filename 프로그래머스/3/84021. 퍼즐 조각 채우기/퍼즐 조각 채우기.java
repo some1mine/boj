@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.*;
 
 class Solution {
     public int[][] directions = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
@@ -71,12 +72,12 @@ class Solution {
             }
         }
         while(true){
-            int zeroLeftCnt = 0;
-            for(int i = 0 ; i < origin.length ; i++) zeroLeftCnt += answer[i][0] == 0 ? 1 : 0;
-            if(zeroLeftCnt != origin.length) break;
+            int zeroCnt = (int) IntStream.range(0, origin.length).filter(i -> answer[i][0] == 0).count();
+            if(zeroCnt != origin.length) break;
             for(int i = 0 ; i < origin.length ; i++){
-                for(int j = 1 ; j < origin[0].length ; j++)
+                for(int j = 1 ; j < origin[0].length ; j++) {
                     answer[i][j - 1] = answer[i][j];
+                }
                 answer[i][origin.length - 1] = 0;
             }
         }
