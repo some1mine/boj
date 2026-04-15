@@ -71,9 +71,7 @@ class Solution {
                 answer[i][j] = origin[origin.length - j - 1][i];
             }
         }
-        while(true){
-            int zeroCnt = (int) IntStream.range(0, origin.length).filter(i -> answer[i][0] == 0).count();
-            if(zeroCnt != origin.length) break;
+        while(IntStream.range(0, origin.length).filter(i -> answer[i][0] == 0).count() == origin.length){
             for(int i = 0 ; i < origin.length ; i++){
                 for(int j = 1 ; j < origin[0].length ; j++) {
                     answer[i][j - 1] = answer[i][j];
