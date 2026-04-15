@@ -55,7 +55,7 @@ class Solution {
             minY = block.stream().map(a -> a[0]).mapToInt(i -> i).min().getAsInt(),
             maxX = block.stream().map(a -> a[1]).mapToInt(i -> i).max().getAsInt(), 
             minX = block.stream().map(a -> a[1]).mapToInt(i -> i).min().getAsInt(),
-            max = Math.max(maxY -=  minY, maxX -= minX);
+            max = Math.max(maxY - minY, maxX - minX);
         int[][] answer = new int[max + 1][max + 1];
         for(int[] b : block) answer[b[0] - minY][b[1] - minX] = 1;
         return answer; 
