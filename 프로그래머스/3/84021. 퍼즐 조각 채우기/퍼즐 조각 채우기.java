@@ -7,11 +7,11 @@ class Solution {
         int answer = 0; List<int[][]> block = collect(table, 1), target = collect(game_board, 0);
         boolean[] visitedB = new boolean[block.size()], visitedT = new boolean[target.size()];
         for(int i = 0 ; i < block.size() ; i++) {
-            int[][] t = block.get(i);
+            int[][] b = block.get(i);
             for(int j = 0 ; j < target.size() ; j++) {
-                int[][] b = target.get(j);
+                int[][] t = target.get(j);
                 for(int k = 0 ; k < 4 ; k++) {
-                    if(!visitedB[i] && !visitedT[j] && isSame(t, b)) {
+                    if(!visitedB[i] && !visitedT[j] && matches(t, b)) {
                         answer += (int) Arrays.stream(t).flatMapToInt(Arrays::stream).sum(); 
                         visitedB[i] = true; visitedT[j] = true; break;
                     }
@@ -21,7 +21,7 @@ class Solution {
         }
         return answer;
     }
-    public boolean isSame(int[][] t, int[][] b) {
+    public boolean matches(int[][] t, int[][] b) {
         if(t.length != b.length || t[0].length != b[0].length) return false;
         for(int i = 0 ; i < t.length ; i++) {
             for(int j = 0 ; j < b.length ; j++) {
@@ -59,7 +59,7 @@ class Solution {
             maxY = Math.max(maxY, b[0]); maxX = Math.max(maxX, b[1]); 
             minY = Math.min(minY, b[0]); minX = Math.min(minX, b[1]);
         }
-        maxY -=  minY > 0 ? minY : 0; maxX -= minX > 0 ? minX : 0; max = Math.max(maxY, maxX);
+        maxY -=  minY; maxX -= minX; max = Math.max(maxY, maxX);
         int[][] answer = new int[max + 1][max + 1];
         for(int[] b : block) answer[Math.min(b[0] - minY, b[0])][Math.min(b[1] - minX, b[1])] = 1;
         return answer; 
