@@ -1,0 +1,6 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+input()
+user_input = set(map(int, input().split()))
+result = list(filter(lambda x: -x not in user_input, user_input))
+print(sum(result))
